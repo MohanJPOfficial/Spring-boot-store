@@ -17,14 +17,7 @@ public class StoreApplication {
 				.email("jpmohan@gmail.com")
 				.build();
 
-		var address = AddressEntity.builder()
-				.street("123 Main St")
-				.city("Sanfrancisco")
-				.state("California")
-				.zip("94105")
-				.build();
-
-		user.addAddress(address);
+		user.addTag("Java Developer");
 
 		System.out.println("User: " + user);
 	}
