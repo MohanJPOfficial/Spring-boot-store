@@ -1,5 +1,6 @@
 package com.mohanjp.store;
 
+import com.mohanjp.store.data.entity.AddressEntity;
 import com.mohanjp.store.data.entity.UserEntity;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -15,5 +16,16 @@ public class StoreApplication {
 				.password("22the333")
 				.email("jpmohan@gmail.com")
 				.build();
+
+		var address = AddressEntity.builder()
+				.street("123 Main St")
+				.city("Sanfrancisco")
+				.state("California")
+				.zip("94105")
+				.build();
+
+		user.addAddress(address);
+
+		System.out.println("User: " + user);
 	}
 }
