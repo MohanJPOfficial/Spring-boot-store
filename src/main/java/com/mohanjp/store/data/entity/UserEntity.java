@@ -48,6 +48,14 @@ public class UserEntity {
     @OneToOne(mappedBy = "user")
     private ProfileEntity profile;
 
+    @ManyToMany
+    @JoinTable(
+            name = "wishlist",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
+    private Set<ProductEntity> wishlist = new HashSet<>();
+
     public void addAddress(AddressEntity address) {
         addresses.add(address);
         address.setUser(this);
