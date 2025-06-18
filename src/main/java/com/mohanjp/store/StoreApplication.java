@@ -1,6 +1,7 @@
 package com.mohanjp.store;
 
 import com.mohanjp.store.data.entity.AddressEntity;
+import com.mohanjp.store.data.entity.ProfileEntity;
 import com.mohanjp.store.data.entity.UserEntity;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -17,7 +18,12 @@ public class StoreApplication {
 				.email("jpmohan@gmail.com")
 				.build();
 
-		user.addTag("Java Developer");
+		var profile = ProfileEntity.builder()
+						.bio("Software Engineer with a passion for coding and technology.")
+						.build();
+
+		user.setProfile(profile);
+		profile.setUser(user);
 
 		System.out.println("User: " + user);
 	}

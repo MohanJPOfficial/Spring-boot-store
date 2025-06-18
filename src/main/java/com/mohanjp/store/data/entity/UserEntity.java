@@ -36,6 +36,18 @@ public class UserEntity {
     @OneToMany(mappedBy = "user")
     private List<AddressEntity> addresses = new ArrayList<>();
 
+    @ManyToMany
+    @JoinTable(
+            name = "user_tags",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    @Builder.Default
+    private Set<TagEntity> tags = new HashSet<>();
+
+    @OneToOne(mappedBy = "user")
+    private ProfileEntity profile;
+
     public void addAddress(AddressEntity address) {
         addresses.add(address);
         address.setUser(this);
@@ -45,15 +57,6 @@ public class UserEntity {
         addresses.remove(address);
         address.setUser(null);
     }
-
-    @ManyToMany
-    @JoinTable(
-            name = "user_tags",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "tag_id")
-    )
-    @Builder.Default
-    private Set<TagEntity> tags = new HashSet<>();
 
     public void addTag(String tagName) {
         var tag = new TagEntity(tagName);
