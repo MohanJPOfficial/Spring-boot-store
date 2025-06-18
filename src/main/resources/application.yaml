@@ -6,15 +6,4 @@ spring:
     url: jdbc:mysql://localhost:3306/store?createDatabaseIfNotExist=true
     username: root
     password: 22the333
-
-notification:
-  port: 8080
-  host: https://email.google.com
-
-stripe:
-  apiUrl: https://api.stripe.com
-  timeout: 1000
-  enabled: true
-  supported-currencies: USD, EUR, GBR
-
-payment-gateway: paypal
+    
