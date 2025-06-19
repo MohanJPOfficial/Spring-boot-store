@@ -1,6 +1,7 @@
 package com.mohanjp.store.services;
 
 import com.mohanjp.store.data.entity.UserEntity;
+import com.mohanjp.store.repositories.AddressRepository;
 import com.mohanjp.store.repositories.ProfileRepository;
 import com.mohanjp.store.repositories.UserRepository;
 import jakarta.persistence.EntityManager;
@@ -15,6 +16,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final EntityManager entityManager;
     private final ProfileRepository profileRepository;
+    private final AddressRepository addressRepository;
 
     @Transactional
     public void showEntityStates() {
@@ -42,5 +44,10 @@ public class UserService {
     public void showRelatedEntities() {
         var profile = profileRepository.findById(1L).orElseThrow();
         System.out.println(profile.getUser().getEmail());
+    }
+
+    public void fetchAddress() {
+        var address = addressRepository.findById(1L).orElseThrow();
+        System.out.println(address);
     }
 }
