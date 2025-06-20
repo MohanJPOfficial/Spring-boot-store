@@ -24,5 +24,10 @@ public class CategoryEntity {
     private String name;
 
     @OneToMany(mappedBy = "category")
+    @ToString.Exclude
     private Set<ProductEntity> products = new HashSet<>();
+
+    public CategoryEntity(String categoryName) {
+        this.name = categoryName;
+    }
 }

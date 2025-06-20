@@ -77,4 +77,8 @@ public class UserEntity {
         tags.remove(tag);
         tag.getUsers().remove(this);
     }
+
+    public void addFavoriteProduct(ProductEntity product) {
+        wishlist.add(product);
+    }
 }

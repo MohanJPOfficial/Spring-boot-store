@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @ToString
 @Table(name = "products")
 public class ProductEntity {
@@ -28,7 +29,7 @@ public class ProductEntity {
     @Column(name = "price")
     private BigDecimal price;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "category_id")
     private CategoryEntity category;
 }
