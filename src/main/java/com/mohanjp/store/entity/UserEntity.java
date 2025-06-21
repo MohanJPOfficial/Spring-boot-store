@@ -81,4 +81,12 @@ public class UserEntity {
     public void addFavoriteProduct(ProductEntity product) {
         wishlist.add(product);
     }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "(" +
+                "id = " + id + ", " +
+                "name = " + name + ", " +
+                "email = " + email + ")";
+    }
 }

@@ -101,4 +101,10 @@ public class UserService {
         var products = productRepository.findByCategory(new CategoryEntity((byte)1));
         products.forEach(System.out::println);
     }
+
+    @Transactional
+    public void fetchUser() {
+        var user = userRepository.findByEmail("jpmohan@gmail.com");
+        System.out.println(user);
+    }
 }
