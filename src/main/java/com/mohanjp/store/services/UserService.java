@@ -1,13 +1,11 @@
 package com.mohanjp.store.services;
 
-import com.mohanjp.store.data.entity.CategoryEntity;
 import com.mohanjp.store.data.entity.ProductEntity;
 import com.mohanjp.store.data.entity.UserEntity;
 import com.mohanjp.store.repositories.AddressRepository;
 import com.mohanjp.store.repositories.ProductRepository;
 import com.mohanjp.store.repositories.ProfileRepository;
 import com.mohanjp.store.repositories.UserRepository;
-import jakarta.persistence.Cache;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -90,6 +88,11 @@ public class UserService {
     }
 
     public void findProduct() {
-        productRepository.findByNameStartingWith("Mo").forEach(System.out::println);
+        productRepository.findProducts(BigDecimal.valueOf(1000), BigDecimal.valueOf(1500)).forEach(System.out::println);
+    }
+
+    @Transactional
+    public void updatePriceByCategory() {
+        productRepository.updatePriceByCategory(BigDecimal.valueOf(1000), (byte) 1);
     }
 }
