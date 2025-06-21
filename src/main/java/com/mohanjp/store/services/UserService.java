@@ -88,4 +88,8 @@ public class UserService {
     public void deleteProduct() {
         productRepository.deleteById(2L);
     }
+
+    public void findProduct() {
+        productRepository.findByNameStartingWith("Mo").forEach(System.out::println);
+    }
 }
