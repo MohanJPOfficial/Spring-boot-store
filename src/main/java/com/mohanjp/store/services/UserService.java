@@ -1,7 +1,8 @@
 package com.mohanjp.store.services;
 
-import com.mohanjp.store.data.entity.ProductEntity;
-import com.mohanjp.store.data.entity.UserEntity;
+import com.mohanjp.store.entity.CategoryEntity;
+import com.mohanjp.store.entity.ProductEntity;
+import com.mohanjp.store.entity.UserEntity;
 import com.mohanjp.store.repositories.AddressRepository;
 import com.mohanjp.store.repositories.ProductRepository;
 import com.mohanjp.store.repositories.ProfileRepository;
@@ -94,5 +95,10 @@ public class UserService {
     @Transactional
     public void updatePriceByCategory() {
         productRepository.updatePriceByCategory(BigDecimal.valueOf(1000), (byte) 1);
+    }
+
+    public void fetchProducts() {
+        var products = productRepository.findByCategory(new CategoryEntity((byte)1));
+        products.forEach(System.out::println);
     }
 }

@@ -1,6 +1,8 @@
 package com.mohanjp.store.repositories;
 
-import com.mohanjp.store.data.entity.ProductEntity;
+import com.mohanjp.store.dto.ProductSummaryDto;
+import com.mohanjp.store.entity.CategoryEntity;
+import com.mohanjp.store.entity.ProductEntity;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -49,4 +51,7 @@ public interface ProductRepository extends CrudRepository<ProductEntity, Long> {
     @Modifying
     @Query("UPDATE ProductEntity p SET p.price = :price WHERE p.category.id = :categoryId")
     void updatePriceByCategory(BigDecimal price, Byte categoryId);
+
+    @Query("SELECT p.id, p.name from ProductEntity p where p.category = :category")
+    List<ProductSummaryDto> findByCategory(@Param("category") CategoryEntity category);
 }

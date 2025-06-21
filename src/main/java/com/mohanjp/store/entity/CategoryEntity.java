@@ -1,4 +1,4 @@
-package com.mohanjp.store.data.entity;
+package com.mohanjp.store.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -29,5 +29,9 @@ public class CategoryEntity {
 
     public CategoryEntity(String categoryName) {
         this.name = categoryName;
+    }
+
+    public CategoryEntity(Byte id) {
+        this.id = id;
     }
 }

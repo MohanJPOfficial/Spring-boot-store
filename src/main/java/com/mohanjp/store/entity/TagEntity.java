@@ -1,4 +1,4 @@
-package com.mohanjp.store.data.entity;
+package com.mohanjp.store.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
