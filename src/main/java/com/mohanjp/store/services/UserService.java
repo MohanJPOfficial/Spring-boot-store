@@ -88,8 +88,9 @@ public class UserService {
         productRepository.deleteById(2L);
     }
 
-    public void findProduct() {
-        productRepository.findProducts(BigDecimal.valueOf(1000), BigDecimal.valueOf(1500)).forEach(System.out::println);
+    @Transactional
+    public void findProducts() {
+        productRepository.findProducts(BigDecimal.valueOf(700), BigDecimal.valueOf(1500)).forEach(System.out::println);
     }
 
     @Transactional
@@ -114,6 +115,5 @@ public class UserService {
             System.out.println(u);
             u.getAddresses().forEach(System.out::println);
         });
-
     }
 }

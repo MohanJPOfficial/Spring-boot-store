@@ -5,6 +5,7 @@ import com.mohanjp.store.entity.CategoryEntity;
 import com.mohanjp.store.entity.ProductEntity;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
@@ -45,8 +46,8 @@ public interface ProductRepository extends CrudRepository<ProductEntity, Long> {
 
     // Find products whose prices are in a given range and sort by name
     // SQL or JPQL
-    @Query("SELECT p FROM ProductEntity p join p.category where p.price between :min and :max order by p.name")
-    List<ProductEntity> findProducts(@Param("min") BigDecimal min, @Param("max") BigDecimal max);
+    // @Query("SELECT p FROM ProductEntity p join p.category where p.price between :min and :max order by p.name")
+    // List<ProductEntity> findProducts(@Param("min") BigDecimal min, @Param("max") BigDecimal max);
 
     @Modifying
     @Query("UPDATE ProductEntity p SET p.price = :price WHERE p.category.id = :categoryId")
@@ -54,4 +55,7 @@ public interface ProductRepository extends CrudRepository<ProductEntity, Long> {
 
     @Query("SELECT p.id, p.name from ProductEntity p where p.category = :category")
     List<ProductSummaryDto> findByCategory(@Param("category") CategoryEntity category);
+
+    @Procedure(procedureName = "findProductsByPrice")
+    List<ProductEntity> findProducts(BigDecimal min, BigDecimal max);
 }
