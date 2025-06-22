@@ -99,7 +99,7 @@ public class UserService {
     }
 
     public void fetchProducts() {
-        var products = productRepository.findByCategory(new CategoryEntity((byte)1));
+        var products = productRepository.findByCategory(new CategoryEntity((byte) 1));
         products.forEach(System.out::println);
     }
 
@@ -111,9 +111,19 @@ public class UserService {
 
     @Transactional
     public void fetchUsersWithAddresses() {
-        userRepository.findUsersWithAddresses().forEach( u -> {
+        userRepository.findUsersWithAddresses().forEach(u -> {
             System.out.println(u);
             u.getAddresses().forEach(System.out::println);
+        });
+    }
+
+    @Transactional
+    public void findProfilesByLoyaltyPointsGreaterThan() {
+
+        var users = userRepository.findByLoyaltyPoints(2);
+
+        users.forEach( user -> {
+            System.out.println(user.getId() + " : " + user.getEmail());
         });
     }
 }
