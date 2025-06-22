@@ -10,6 +10,8 @@ import com.mohanjp.store.repositories.UserRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -125,5 +127,22 @@ public class UserService {
         users.forEach( user -> {
             System.out.println(user.getId() + " : " + user.getEmail());
         });
+    }
+
+    public void fetchProductsWithExample() {
+        var product = new ProductEntity();
+
+        product.setName("Mobile");
+
+        var matcher = ExampleMatcher.matching()
+                .withIncludeNullValues()
+                .withIgnorePaths("id", "description")
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+
+        var example = Example.of(product, matcher);
+
+        var products = productRepository.findAll(example);
+
+        products.forEach(System.out::println);
     }
 }
