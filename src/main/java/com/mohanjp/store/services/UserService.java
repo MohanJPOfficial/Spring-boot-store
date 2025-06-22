@@ -145,4 +145,9 @@ public class UserService {
 
         products.forEach(System.out::println);
     }
+
+    public void fetchProductsByCriteria() {
+        var products = productRepository.findProductsByCriteria("Mob", BigDecimal.valueOf(800), BigDecimal.valueOf(1500));
+        products.forEach(System.out::println);
+    }
 }
