@@ -7,11 +7,13 @@ import com.mohanjp.store.repositories.AddressRepository;
 import com.mohanjp.store.repositories.ProductRepository;
 import com.mohanjp.store.repositories.ProfileRepository;
 import com.mohanjp.store.repositories.UserRepository;
+import com.mohanjp.store.repositories.specifications.ProductSpec;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -124,7 +126,7 @@ public class UserService {
 
         var users = userRepository.findByLoyaltyPoints(2);
 
-        users.forEach( user -> {
+        users.forEach(user -> {
             System.out.println(user.getId() + " : " + user.getEmail());
         });
     }
@@ -149,5 +151,23 @@ public class UserService {
     public void fetchProductsByCriteria() {
         var products = productRepository.findProductsByCriteria("Mob", BigDecimal.valueOf(800), BigDecimal.valueOf(1500));
         products.forEach(System.out::println);
+    }
+
+    public void fetchProductsBySpecification(String name, BigDecimal minPrice, BigDecimal maxPrice) {
+        Specification<ProductEntity> specification = (root, query, criteriaBuilder) -> criteriaBuilder.conjunction();
+
+        if (name != null) {
+            specification = specification.and(ProductSpec.hasName(name));
+        }
+
+        if (minPrice != null) {
+            specification = specification.and(ProductSpec.hasPriceGreaterThanOrEqualTo(minPrice));
+        }
+
+        if(maxPrice != null) {
+            specification = specification.and(ProductSpec.hasPriceLessThanOrEqualTo(maxPrice));
+        }
+
+        productRepository.findAll(specification).forEach(System.out::println);
     }
 }
