@@ -13,6 +13,6 @@ public class StoreApplication {
         ApplicationContext context = SpringApplication.run(StoreApplication.class, args);
 
         var service = context.getBean(UserService.class);
-        service.fetchPaginatedProducts(0, 2);
+        service.fetchProductsByCategorySpecification(Byte.valueOf("2"));
     }
 }

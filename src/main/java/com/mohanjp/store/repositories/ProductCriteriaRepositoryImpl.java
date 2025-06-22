@@ -49,4 +49,22 @@ public class ProductCriteriaRepositoryImpl implements ProductCriteriaRepository 
 
         return entityManager.createQuery(query).getResultList();
     }
+
+    @Override
+    public List<ProductEntity> findProductsByCategory(Byte categoryId) {
+        CriteriaBuilder builder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<ProductEntity> query = builder.createQuery(ProductEntity.class);
+        Root<ProductEntity> root = query.from(ProductEntity.class);
+
+        List<Predicate> predicates = new ArrayList<>();
+
+        // category.id = categoryId
+        if (categoryId != null) {
+            predicates.add(builder.equal(root.get("category").get("id"), categoryId));
+        }
+
+        query.select(root).where(predicates.toArray(new Predicate[0]));
+
+        return entityManager.createQuery(query).getResultList();
+    }
 }

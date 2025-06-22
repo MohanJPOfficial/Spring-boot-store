@@ -191,4 +191,14 @@ public class UserService {
         System.out.println("Total Pages: " + totalPages);
         System.out.println("Total Elements: " + totalElements);
     }
+
+    public void fetchProductsByCategoryCriteria() {
+        var products = productRepository.findProductsByCategory(Byte.valueOf("1"));
+        products.forEach(System.out::println);
+    }
+
+    public void fetchProductsByCategorySpecification(Byte categoryId) {
+        Specification<ProductEntity> specification = ProductSpec.productsByCategory(categoryId);
+        productRepository.findAll(specification).forEach(System.out::println);
+    }
 }

@@ -8,4 +8,6 @@ import java.util.List;
 public interface ProductCriteriaRepository {
 
     List<ProductEntity> findProductsByCriteria(String name, BigDecimal minPrice, BigDecimal maxPrice);
+
+    List<ProductEntity> findProductsByCategory(Byte categoryId);
 }

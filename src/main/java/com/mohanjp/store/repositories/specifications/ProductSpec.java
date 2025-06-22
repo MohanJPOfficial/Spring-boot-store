@@ -18,4 +18,8 @@ public class ProductSpec {
     public static Specification<ProductEntity> hasPriceLessThanOrEqualTo(BigDecimal maxPrice) {
         return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.lessThanOrEqualTo(root.get("price"), maxPrice);
     }
+
+    public static Specification<ProductEntity> productsByCategory(Byte categoryId) {
+        return (root, criteriaQuery, criteriaBuilder) -> criteriaBuilder.equal(root.get("category").get("id"), categoryId);
+    }
 }
