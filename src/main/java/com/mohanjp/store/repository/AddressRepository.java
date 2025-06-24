@@ -1,4 +1,4 @@
-package com.mohanjp.store.repositories;
+package com.mohanjp.store.repository;
 
 import com.mohanjp.store.entity.AddressEntity;
 import org.springframework.data.repository.CrudRepository;

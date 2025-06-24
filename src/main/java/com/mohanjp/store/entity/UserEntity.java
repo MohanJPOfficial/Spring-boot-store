@@ -13,7 +13,6 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
 @Table(name = "users")
 public class UserEntity {
@@ -33,19 +32,10 @@ public class UserEntity {
     private String password;
 
     @Builder.Default
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     private List<AddressEntity> addresses = new ArrayList<>();
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_tags",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "tag_id")
-    )
-    @Builder.Default
-    private Set<TagEntity> tags = new HashSet<>();
-
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
     private ProfileEntity profile;
 
     @ManyToMany
@@ -64,18 +54,6 @@ public class UserEntity {
     public void removeAddress(AddressEntity address) {
         addresses.remove(address);
         address.setUser(null);
-    }
-
-    public void addTag(String tagName) {
-        var tag = new TagEntity(tagName);
-
-        tags.add(tag);
-        tag.getUsers().add(this);
-    }
-
-    public void removeTag(TagEntity tag) {
-        tags.remove(tag);
-        tag.getUsers().remove(this);
     }
 
     public void addFavoriteProduct(ProductEntity product) {

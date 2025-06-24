@@ -1,4 +1,4 @@
-package com.mohanjp.store.services;
+package com.mohanjp.store.repository;
 
 import com.mohanjp.store.entity.CategoryEntity;
 import org.springframework.data.repository.CrudRepository;

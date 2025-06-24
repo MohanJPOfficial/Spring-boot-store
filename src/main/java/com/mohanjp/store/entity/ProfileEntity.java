@@ -34,6 +34,5 @@ public class ProfileEntity {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id")
     @MapsId
-    @ToString.Exclude
     private UserEntity user;
 }
