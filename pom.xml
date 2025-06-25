@@ -73,6 +73,11 @@
             <scope>annotationProcessor</scope>
         </dependency>
 
+        <dependency>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <groupId>org.springframework.boot</groupId>
+        </dependency>
+
     </dependencies>
 
     <build>
