@@ -1,5 +1,6 @@
 package com.mohanjp.store.controllers;
 
+import com.mohanjp.store.dto.UserDto;
 import com.mohanjp.store.entity.UserEntity;
 import com.mohanjp.store.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -17,18 +18,23 @@ public class UserController {
     private final UserRepository userRepository;
 
     @GetMapping
-    public Iterable<UserEntity> getAllUsers() {
-        return userRepository.findAll();
+    public Iterable<UserDto> getAllUsers() {
+        return userRepository.findAll()
+                .stream()
+                .map(user -> new UserDto(user.getId(), user.getName(), user.getEmail()))
+                .toList();
+
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserEntity> getUserById(@PathVariable long id) {
+    public ResponseEntity<UserDto> getUserById(@PathVariable long id) {
         var user = userRepository.findById(id).orElse(null);
 
         if (user == null) {
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok(user);
+        var userDto = new UserDto(user.getId(), user.getName(), user.getEmail());
+        return ResponseEntity.ok(userDto);
     }
 }
