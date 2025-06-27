@@ -35,8 +35,8 @@ public class UserEntity {
     @OneToMany(mappedBy = "user", cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, orphanRemoval = true)
     private List<AddressEntity> addresses = new ArrayList<>();
 
-    @OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
-    private ProfileEntity profile;
+    /*@OneToOne(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private ProfileEntity profile;*/
 
     @ManyToMany
     @JoinTable(
