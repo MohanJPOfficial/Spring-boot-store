@@ -6,6 +6,7 @@ import com.mohanjp.store.dto.UpdateUserRequest;
 import com.mohanjp.store.dto.UserDto;
 import com.mohanjp.store.mapper.UserMapper;
 import com.mohanjp.store.repository.UserRepository;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
@@ -53,7 +54,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<UserDto> createUser(
-            @RequestBody RegisterUserRequest request,
+            @Valid @RequestBody RegisterUserRequest request,
             UriComponentsBuilder uriBuilder
     ) {
         var user = userMapper.toEntity(request);
