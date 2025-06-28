@@ -1,6 +1,7 @@
 package com.mohanjp.store.controllers;
 
 import com.mohanjp.store.dto.RegisterUserRequest;
+import com.mohanjp.store.dto.UpdateUserRequest;
 import com.mohanjp.store.dto.UserDto;
 import com.mohanjp.store.entity.UserEntity;
 import com.mohanjp.store.mapper.UserMapper;
@@ -62,5 +63,22 @@ public class UserController {
         var uri = uriBuilder.path("/users/{id}").buildAndExpand(userDto.getId()).toUri();
 
         return ResponseEntity.created(uri).body(userDto);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDto> updateUser(
+            @PathVariable(name = "id") Long id,
+            @RequestBody UpdateUserRequest request
+    ) {
+        var user = userRepository.findById(id).orElse(null);
+
+        if(user == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        userMapper.update(request, user);
+        userRepository.save(user);
+
+        return ResponseEntity.ok(userMapper.toDto(user));
     }
 }
