@@ -1,5 +1,6 @@
 package com.mohanjp.store.controllers;
 
+import com.mohanjp.store.dto.RegisterUserRequest;
 import com.mohanjp.store.dto.UserDto;
 import com.mohanjp.store.entity.UserEntity;
 import com.mohanjp.store.mapper.UserMapper;
@@ -8,6 +9,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.Set;
 
@@ -48,7 +50,17 @@ public class UserController {
     }
 
     @PostMapping
-    public UserDto createUser(@RequestBody UserDto userDto) {
-        return userDto;
+    public ResponseEntity<UserDto> createUser(
+            @RequestBody RegisterUserRequest request,
+            UriComponentsBuilder uriBuilder
+    ) {
+        var user = userMapper.toEntity(request);
+        userRepository.save(user);
+
+        var userDto = userMapper.toDto(user);
+
+        var uri = uriBuilder.path("/users/{id}").buildAndExpand(userDto.getId()).toUri();
+
+        return ResponseEntity.created(uri).body(userDto);
     }
 }
