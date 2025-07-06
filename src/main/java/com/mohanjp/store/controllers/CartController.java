@@ -5,9 +5,8 @@ import com.mohanjp.store.dto.CartDto;
 import com.mohanjp.store.dto.CartItemDto;
 import com.mohanjp.store.dto.UpdateCartItemRequest;
 import com.mohanjp.store.entity.CartEntity;
-import com.mohanjp.store.entity.CartItemEntity;
-import com.mohanjp.store.repository.CartRepository;
 import com.mohanjp.store.mapper.CartMapper;
+import com.mohanjp.store.repository.CartRepository;
 import com.mohanjp.store.repository.ProductRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -105,5 +104,25 @@ public class CartController {
         cartRepository.save(cart);
 
         return ResponseEntity.ok(cartMapper.toDto(cartItem));
+    }
+
+    @DeleteMapping("/{cartId}/items/{productId}")
+    public ResponseEntity<?> removeItemFromCart(
+            @PathVariable("cartId") UUID cartId,
+            @PathVariable("productId") Long productId
+    ) {
+        var cart = cartRepository.getCartWithItems(cartId).orElse(null);
+
+        if (cart == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(
+                    Map.of("error", "Cart was not found")
+            );
+        }
+
+        cart.removeItem(productId);
+
+        cartRepository.save(cart);
+
+        return ResponseEntity.noContent().build();
     }
 }
