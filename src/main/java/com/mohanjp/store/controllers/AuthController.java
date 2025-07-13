@@ -6,6 +6,8 @@ import com.mohanjp.store.dto.UserDto;
 import com.mohanjp.store.mapper.UserMapper;
 import com.mohanjp.store.repository.UserRepository;
 import com.mohanjp.store.service.JwtService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,7 +30,8 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<JwtResponse> login(
-            @Valid @RequestBody LoginRequest request
+            @Valid @RequestBody LoginRequest request,
+            HttpServletResponse response
     ) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
@@ -38,10 +41,17 @@ public class AuthController {
         );
 
         var user =  userRepository.findByEmail(request.getEmail()).orElseThrow();
+        var accessToken = jwtService.generateAccessToken(user);
+        var refreshToken = jwtService.generateRefreshToken(user);
 
-        var token = jwtService.generateToken(user);
+        var cookie = new Cookie("refreshToken", refreshToken);
+        cookie.setHttpOnly(true);
+        cookie.setPath("/auth/refresh");
+        cookie.setMaxAge(604800); // 7 days
+        cookie.setSecure(true);
+        response.addCookie(cookie);
 
-        return ResponseEntity.ok(new JwtResponse(token));
+        return ResponseEntity.ok(new JwtResponse(accessToken));
     }
 
     @PostMapping("/validate")
