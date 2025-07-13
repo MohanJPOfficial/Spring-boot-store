@@ -1,5 +1,6 @@
 package com.mohanjp.store.config;
 
+import com.mohanjp.store.entity.Role;
 import com.mohanjp.store.filter.JwtAuthenticationFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -55,18 +56,22 @@ public class SecurityConfig {
         http.sessionManagement(c ->
                         c.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(c ->
-                        c.requestMatchers("/carts/**").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/users").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/auth/validate").permitAll()
-                                .requestMatchers(HttpMethod.POST, "/auth/refresh").permitAll()
-                                .anyRequest().authenticated()
+                .authorizeHttpRequests(c -> c
+                        .requestMatchers("/carts/**").permitAll()
+                        .requestMatchers("/admin/**").hasRole(Role.ADMIN.name())
+                        .requestMatchers(HttpMethod.POST, "/users").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/validate").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/auth/refresh").permitAll()
+                        .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .exceptionHandling(e ->
-                    e.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
-                );
+                .exceptionHandling(e -> {
+                    e.authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED));
+                    e.accessDeniedHandler((request, response, accessDeniedException) -> {
+                        response.setStatus(HttpStatus.FORBIDDEN.value());
+                    });
+                });
 
         return http.build();
     }
