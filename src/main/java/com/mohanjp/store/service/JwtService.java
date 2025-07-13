@@ -1,7 +1,6 @@
 package com.mohanjp.store.service;
 
 import com.mohanjp.store.config.JwtConfig;
-import com.mohanjp.store.entity.Role;
 import com.mohanjp.store.entity.UserEntity;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
@@ -17,42 +16,36 @@ public class JwtService {
 
     private final JwtConfig jwtConfig;
 
-    public String generateAccessToken(UserEntity user) {
+    public Jwt generateAccessToken(UserEntity user) {
         return generateToken(user, jwtConfig.getAccessTokenExpiration());
     }
 
-    public String generateRefreshToken(UserEntity user) {
+    public Jwt generateRefreshToken(UserEntity user) {
         return generateToken(user, jwtConfig.getRefreshTokenExpiration());
     }
 
-    private String generateToken(UserEntity user, long tokenExpiration) {
-        return Jwts.builder()
+    private Jwt generateToken(UserEntity user, long tokenExpiration) {
+
+        var claims = Jwts.claims()
                 .subject(user.getId().toString())
-                .claim("email", user.getEmail())
-                .claim("name", user.getName())
-                .claim("role", user.getRole())
+                .add("email", user.getEmail())
+                .add("name", user.getName())
+                .add("role", user.getRole())
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + 1000 * tokenExpiration))
-                .signWith(jwtConfig.getSecretKey())
-                .compact();
+                .build();
+
+        return new Jwt(claims, jwtConfig.getSecretKey());
     }
 
-    public boolean validateToken(String token) {
+    public Jwt parseToken(String token) {
         try {
             var claims = getClaims(token);
-            return claims.getExpiration().after(new Date());
+            return new Jwt(claims, jwtConfig.getSecretKey());
 
         } catch (JwtException ex) {
-            return false;
+            return null;
         }
-    }
-
-    public Long getUserIdFromToken(String token) {
-        return Long.valueOf(getClaims(token).getSubject());
-    }
-
-    public Role getRoleFromToken(String token) {
-        return Role.valueOf(String.valueOf(getClaims(token).get("role", String.class)));
     }
 
     private Claims getClaims(String token) {
