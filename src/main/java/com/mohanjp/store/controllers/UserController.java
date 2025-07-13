@@ -4,6 +4,7 @@ import com.mohanjp.store.dto.ChangePasswordRequest;
 import com.mohanjp.store.dto.RegisterUserRequest;
 import com.mohanjp.store.dto.UpdateUserRequest;
 import com.mohanjp.store.dto.UserDto;
+import com.mohanjp.store.entity.Role;
 import com.mohanjp.store.mapper.UserMapper;
 import com.mohanjp.store.repository.UserRepository;
 import jakarta.validation.Valid;
@@ -68,6 +69,7 @@ public class UserController {
         }
         var user = userMapper.toEntity(request);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setRole(Role.USER);
         userRepository.save(user);
 
         var userDto = userMapper.toDto(user);
