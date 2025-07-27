@@ -33,7 +33,7 @@ public class OrderEntity {
     @Column(name = "total_price")
     private BigDecimal totalPrice;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST)
     private Set<OrderItemEntity> items = new LinkedHashSet<>();
 }
 
