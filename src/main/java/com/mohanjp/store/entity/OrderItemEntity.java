@@ -2,6 +2,7 @@ package com.mohanjp.store.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
@@ -9,6 +10,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Entity
+@NoArgsConstructor
 @Table(name = "order_items", schema = "store")
 public class OrderItemEntity {
     @Id
@@ -32,4 +34,12 @@ public class OrderItemEntity {
 
     @Column(name = "total_price")
     private BigDecimal totalPrice;
+
+    public OrderItemEntity(OrderEntity order, ProductEntity product, Integer quantity) {
+        this.order = order;
+        this.product = product;
+        this.quantity = quantity;
+        this.unitPrice = product.getPrice();
+        this.totalPrice = unitPrice.multiply(new BigDecimal(quantity));
+    }
 }

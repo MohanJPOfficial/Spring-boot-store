@@ -4,8 +4,6 @@ import com.mohanjp.store.dto.CheckoutRequest;
 import com.mohanjp.store.dto.CheckoutResponse;
 import com.mohanjp.store.dto.ErrorDto;
 import com.mohanjp.store.entity.OrderEntity;
-import com.mohanjp.store.entity.OrderItemEntity;
-import com.mohanjp.store.entity.OrderStatus;
 import com.mohanjp.store.repository.CartRepository;
 import com.mohanjp.store.repository.OrderRepository;
 import com.mohanjp.store.service.AuthService;
@@ -17,8 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Map;
 
 @AllArgsConstructor
 @RestController
@@ -48,21 +44,7 @@ public class CheckoutController {
             );
         }
 
-        var order = new OrderEntity();
-        order.setTotalPrice(cart.getTotalPrice());
-        order.setStatus(OrderStatus.PENDING);
-        order.setCustomer(authService.getCurrentUser());
-
-        cart.getItems().forEach(item -> {
-            var orderItem = new OrderItemEntity();
-
-            orderItem.setOrder(order);
-            orderItem.setProduct(item.getProduct());
-            orderItem.setQuantity(item.getQuantity());
-            orderItem.setTotalPrice(item.getTotalPrice());
-            orderItem.setUnitPrice(item.getProduct().getPrice());
-            order.getItems().add(orderItem);
-        });
+        var order = OrderEntity.fromCart(cart, authService.getCurrentUser());
 
         orderRepository.save(order);
         cartService.clearCart(cart.getId());
