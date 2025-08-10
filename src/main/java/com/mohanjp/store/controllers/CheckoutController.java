@@ -3,52 +3,30 @@ package com.mohanjp.store.controllers;
 import com.mohanjp.store.dto.CheckoutRequest;
 import com.mohanjp.store.dto.CheckoutResponse;
 import com.mohanjp.store.dto.ErrorDto;
-import com.mohanjp.store.entity.OrderEntity;
-import com.mohanjp.store.repository.CartRepository;
-import com.mohanjp.store.repository.OrderRepository;
-import com.mohanjp.store.service.AuthService;
-import com.mohanjp.store.service.CartService;
+import com.mohanjp.store.exception.CartEmptyException;
+import com.mohanjp.store.exception.CartNotFoundException;
+import com.mohanjp.store.service.CheckoutService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @AllArgsConstructor
 @RestController
 @RequestMapping("/checkout")
 public class CheckoutController {
 
-    private final CartRepository cartRepository;
-    private final AuthService authService;
-    private final OrderRepository orderRepository;
-    private final CartService cartService;
+    private final CheckoutService checkoutService;
 
     @PostMapping
-    public ResponseEntity<?> checkout(
+    public CheckoutResponse checkout(
             @Valid @RequestBody CheckoutRequest request
     ) {
-        var cart = cartRepository.getCartWithItems(request.getCartId()).orElse(null);
+        return checkoutService.checkout(request);
+    }
 
-        if (cart == null) {
-            return ResponseEntity.badRequest().body(
-                    new ErrorDto("Cart not found")
-            );
-        }
-
-        if (cart.getItems().isEmpty()) {
-            return ResponseEntity.badRequest().body(
-                    new ErrorDto("Cart is empty")
-            );
-        }
-
-        var order = OrderEntity.fromCart(cart, authService.getCurrentUser());
-
-        orderRepository.save(order);
-        cartService.clearCart(cart.getId());
-
-        return ResponseEntity.ok(new CheckoutResponse(order.getId()));
+    @ExceptionHandler({CartNotFoundException.class, CartEmptyException.class})
+    public ResponseEntity<ErrorDto> handleException(Exception e) {
+        return ResponseEntity.badRequest().body(new ErrorDto(e.getMessage()));
     }
 }
