@@ -46,7 +46,7 @@ public class CartController {
         return ResponseEntity.status(HttpStatus.CREATED).body(cartItemDto);
     }
 
-    @PostMapping("/{cartId}")
+    @GetMapping("/{cartId}")
     public CartDto getCart(@PathVariable UUID cartId) {
         return cartService.getCart(cartId);
     }

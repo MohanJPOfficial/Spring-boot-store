@@ -2,6 +2,7 @@ package com.mohanjp.store.controllers;
 
 import com.mohanjp.store.dto.CheckoutRequest;
 import com.mohanjp.store.dto.CheckoutResponse;
+import com.mohanjp.store.dto.ErrorDto;
 import com.mohanjp.store.entity.OrderEntity;
 import com.mohanjp.store.entity.OrderItemEntity;
 import com.mohanjp.store.entity.OrderStatus;
@@ -37,13 +38,13 @@ public class CheckoutController {
 
         if (cart == null) {
             return ResponseEntity.badRequest().body(
-                    Map.of("error", "Cart not found")
+                    new ErrorDto("Cart not found")
             );
         }
 
         if (cart.getItems().isEmpty()) {
             return ResponseEntity.badRequest().body(
-                    Map.of("error", "Cart is empty")
+                    new ErrorDto("Cart is empty")
             );
         }
 
