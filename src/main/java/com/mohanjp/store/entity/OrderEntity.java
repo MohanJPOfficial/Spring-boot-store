@@ -49,5 +49,9 @@ public class OrderEntity {
 
         return order;
     }
+
+    public boolean isPlacedBy(UserEntity customer) {
+        return this.customer.equals(customer);
+    }
 }
 
