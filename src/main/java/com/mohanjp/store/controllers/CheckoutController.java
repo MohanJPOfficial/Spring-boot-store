@@ -6,6 +6,7 @@ import com.mohanjp.store.dto.ErrorDto;
 import com.mohanjp.store.exception.CartEmptyException;
 import com.mohanjp.store.exception.CartNotFoundException;
 import com.mohanjp.store.service.CheckoutService;
+import com.stripe.exception.StripeException;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class CheckoutController {
     @PostMapping
     public CheckoutResponse checkout(
             @Valid @RequestBody CheckoutRequest request
-    ) {
+    ) throws StripeException {
         return checkoutService.checkout(request);
     }
 
