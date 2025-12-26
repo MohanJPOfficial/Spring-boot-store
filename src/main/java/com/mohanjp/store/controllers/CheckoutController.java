@@ -1,11 +1,12 @@
 package com.mohanjp.store.controllers;
 
 import com.mohanjp.store.dto.CheckoutRequest;
+import com.mohanjp.store.dto.CheckoutResponse;
 import com.mohanjp.store.dto.ErrorDto;
 import com.mohanjp.store.exception.CartEmptyException;
 import com.mohanjp.store.exception.CartNotFoundException;
+import com.mohanjp.store.exception.PaymentException;
 import com.mohanjp.store.service.CheckoutService;
-import com.stripe.exception.StripeException;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,16 +21,17 @@ public class CheckoutController {
     private final CheckoutService checkoutService;
 
     @PostMapping
-    public ResponseEntity<?> checkout(
+    public CheckoutResponse checkout(
             @Valid @RequestBody CheckoutRequest request
     ) {
-        try {
-            return ResponseEntity.ok(checkoutService.checkout(request));
-        } catch (StripeException ex) {
-            return ResponseEntity
-                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(new ErrorDto("Payment processing error: " + ex.getMessage()));
-        }
+        return checkoutService.checkout(request);
+    }
+
+    @ExceptionHandler(PaymentException.class)
+    public ResponseEntity<?> handlePaymentException(PaymentException e) {
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(new ErrorDto("Error creating a checkout session " + e.getMessage()));
     }
 
     @ExceptionHandler({CartNotFoundException.class, CartEmptyException.class})
