@@ -3,11 +3,14 @@ package com.mohanjp.store.controllers;
 import com.mohanjp.store.dto.CheckoutRequest;
 import com.mohanjp.store.dto.CheckoutResponse;
 import com.mohanjp.store.dto.ErrorDto;
+import com.mohanjp.store.entity.OrderStatus;
 import com.mohanjp.store.exception.CartEmptyException;
 import com.mohanjp.store.exception.CartNotFoundException;
 import com.mohanjp.store.exception.PaymentException;
+import com.mohanjp.store.repository.OrderRepository;
 import com.mohanjp.store.service.CheckoutService;
 import com.stripe.exception.SignatureVerificationException;
+import com.stripe.model.PaymentIntent;
 import com.stripe.net.Webhook;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 public class CheckoutController {
 
     private final CheckoutService checkoutService;
+    private final OrderRepository orderRepository;
 
     @Value("${stripe.webhookSecretKey}")
     private String webhookSecretKey;
@@ -47,6 +51,14 @@ public class CheckoutController {
             switch (event.getType()) {
                 case "payment_intent.succeeded" -> {
                     // update order status to PAID
+                    var paymentIntent = (PaymentIntent) stripeObject;
+                    System.out.println("Received PaymentIntent: " + paymentIntent);
+                    if (paymentIntent != null) {
+                        String orderId = paymentIntent.getMetadata().get("order_id");
+                        var order = orderRepository.findById(Long.parseLong(orderId)).orElseThrow();
+                        order.setStatus(OrderStatus.PAID);
+                        orderRepository.save(order);
+                    }
                 }
                 case "payment_intent.failed" -> {
                     // update order status to PAYMENT_FAILED
