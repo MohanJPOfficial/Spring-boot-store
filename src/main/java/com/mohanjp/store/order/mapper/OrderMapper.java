@@ -1,7 +1,7 @@
-package com.mohanjp.store.mapper;
+package com.mohanjp.store.order.mapper;
 
-import com.mohanjp.store.dto.order.OrderDto;
-import com.mohanjp.store.entity.OrderEntity;
+import com.mohanjp.store.order.dto.OrderDto;
+import com.mohanjp.store.order.entity.OrderEntity;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

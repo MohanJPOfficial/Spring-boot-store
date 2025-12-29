@@ -6,7 +6,7 @@ import com.mohanjp.store.dto.ErrorDto;
 import com.mohanjp.store.cart.exception.CartEmptyException;
 import com.mohanjp.store.cart.exception.CartNotFoundException;
 import com.mohanjp.store.payment.exception.PaymentException;
-import com.mohanjp.store.repository.OrderRepository;
+import com.mohanjp.store.order.repository.OrderRepository;
 import com.mohanjp.store.payment.service.CheckoutService;
 import com.mohanjp.store.payment.service.WebhookRequest;
 import jakarta.validation.Valid;

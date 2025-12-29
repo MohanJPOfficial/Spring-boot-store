@@ -1,8 +1,8 @@
 package com.mohanjp.store.payment.service;
 
-import com.mohanjp.store.entity.OrderEntity;
-import com.mohanjp.store.entity.OrderItemEntity;
-import com.mohanjp.store.entity.PaymentStatus;
+import com.mohanjp.store.order.entity.OrderEntity;
+import com.mohanjp.store.order.entity.OrderItemEntity;
+import com.mohanjp.store.order.entity.PaymentStatus;
 import com.mohanjp.store.payment.exception.PaymentException;
 import com.stripe.exception.SignatureVerificationException;
 import com.stripe.exception.StripeException;

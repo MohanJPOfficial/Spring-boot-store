@@ -1,6 +1,6 @@
-package com.mohanjp.store.repository;
+package com.mohanjp.store.order.repository;
 
-import com.mohanjp.store.entity.OrderEntity;
+import com.mohanjp.store.order.entity.OrderEntity;
 import com.mohanjp.store.user.entity.UserEntity;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;

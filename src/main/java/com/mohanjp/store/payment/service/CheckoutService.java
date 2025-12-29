@@ -2,12 +2,12 @@ package com.mohanjp.store.payment.service;
 
 import com.mohanjp.store.payment.dto.CheckoutRequest;
 import com.mohanjp.store.payment.dto.CheckoutResponse;
-import com.mohanjp.store.entity.OrderEntity;
+import com.mohanjp.store.order.entity.OrderEntity;
 import com.mohanjp.store.cart.exception.CartEmptyException;
 import com.mohanjp.store.cart.exception.CartNotFoundException;
 import com.mohanjp.store.payment.exception.PaymentException;
 import com.mohanjp.store.cart.repository.CartRepository;
-import com.mohanjp.store.repository.OrderRepository;
+import com.mohanjp.store.order.repository.OrderRepository;
 import com.mohanjp.store.auth.service.AuthService;
 import com.mohanjp.store.cart.service.CartService;
 import lombok.RequiredArgsConstructor;

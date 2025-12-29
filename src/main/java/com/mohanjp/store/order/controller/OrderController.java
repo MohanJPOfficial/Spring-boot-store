@@ -1,9 +1,9 @@
-package com.mohanjp.store.controllers;
+package com.mohanjp.store.order.controller;
 
 import com.mohanjp.store.dto.ErrorDto;
-import com.mohanjp.store.dto.order.OrderDto;
-import com.mohanjp.store.exception.OrderNotFoundException;
-import com.mohanjp.store.service.OrderService;
+import com.mohanjp.store.order.dto.OrderDto;
+import com.mohanjp.store.order.exception.OrderNotFoundException;
+import com.mohanjp.store.order.service.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.mohanjp.store.exception;
+package com.mohanjp.store.order.exception;
 
 public class OrderNotFoundException extends RuntimeException {
     public OrderNotFoundException() {

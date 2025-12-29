@@ -1,4 +1,4 @@
-package com.mohanjp.store.entity;
+package com.mohanjp.store.order.entity;
 
 import com.mohanjp.store.cart.entity.CartEntity;
 import com.mohanjp.store.user.entity.UserEntity;

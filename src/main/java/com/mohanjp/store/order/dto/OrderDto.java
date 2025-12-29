@@ -1,4 +1,4 @@
-package com.mohanjp.store.dto.order;
+package com.mohanjp.store.order.dto;
 
 import lombok.Data;
 

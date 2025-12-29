@@ -1,6 +1,6 @@
 package com.mohanjp.store.payment.service;
 
-import com.mohanjp.store.entity.OrderEntity;
+import com.mohanjp.store.order.entity.OrderEntity;
 
 import java.util.Optional;
 

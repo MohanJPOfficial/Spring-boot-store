@@ -1,6 +1,6 @@
 package com.mohanjp.store.payment.service;
 
-import com.mohanjp.store.entity.PaymentStatus;
+import com.mohanjp.store.order.entity.PaymentStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
