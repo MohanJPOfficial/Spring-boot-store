@@ -1,14 +1,14 @@
-package com.mohanjp.store.controllers;
+package com.mohanjp.store.payment.controller;
 
-import com.mohanjp.store.dto.CheckoutRequest;
-import com.mohanjp.store.dto.CheckoutResponse;
+import com.mohanjp.store.payment.dto.CheckoutRequest;
+import com.mohanjp.store.payment.dto.CheckoutResponse;
 import com.mohanjp.store.dto.ErrorDto;
 import com.mohanjp.store.exception.CartEmptyException;
 import com.mohanjp.store.exception.CartNotFoundException;
-import com.mohanjp.store.exception.PaymentException;
+import com.mohanjp.store.payment.exception.PaymentException;
 import com.mohanjp.store.repository.OrderRepository;
-import com.mohanjp.store.service.CheckoutService;
-import com.mohanjp.store.service.paymentGateway.WebhookRequest;
+import com.mohanjp.store.payment.service.CheckoutService;
+import com.mohanjp.store.payment.service.WebhookRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

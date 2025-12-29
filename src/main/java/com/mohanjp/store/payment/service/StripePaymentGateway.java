@@ -1,10 +1,9 @@
-package com.mohanjp.store.service.paymentGateway;
+package com.mohanjp.store.payment.service;
 
 import com.mohanjp.store.entity.OrderEntity;
 import com.mohanjp.store.entity.OrderItemEntity;
 import com.mohanjp.store.entity.PaymentStatus;
-import com.mohanjp.store.exception.PaymentException;
-import com.mohanjp.store.service.CheckoutSession;
+import com.mohanjp.store.payment.exception.PaymentException;
 import com.stripe.exception.SignatureVerificationException;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Event;

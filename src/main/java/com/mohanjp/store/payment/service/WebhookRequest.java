@@ -1,4 +1,4 @@
-package com.mohanjp.store.service.paymentGateway;
+package com.mohanjp.store.payment.service;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

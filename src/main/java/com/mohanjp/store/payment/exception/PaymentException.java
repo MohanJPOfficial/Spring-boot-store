@@ -1,4 +1,4 @@
-package com.mohanjp.store.exception;
+package com.mohanjp.store.payment.exception;
 
 public class PaymentException extends RuntimeException {
 

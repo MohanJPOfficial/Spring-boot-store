@@ -1,4 +1,4 @@
-package com.mohanjp.store.config;
+package com.mohanjp.store.payment.config;
 
 import com.stripe.Stripe;
 import jakarta.annotation.PostConstruct;

@@ -1,4 +1,4 @@
-package com.mohanjp.store.dto;
+package com.mohanjp.store.payment.dto;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;

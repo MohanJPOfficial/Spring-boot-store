@@ -1,7 +1,7 @@
-package com.mohanjp.store.service.paymentGateway;
+package com.mohanjp.store.payment.service;
 
 import com.mohanjp.store.entity.OrderEntity;
-import com.mohanjp.store.service.CheckoutSession;
+
 import java.util.Optional;
 
 public interface PaymentGateway {
