@@ -1,4 +1,4 @@
-package com.mohanjp.store.dto;
+package com.mohanjp.store.product.dto;
 
 import lombok.Data;
 

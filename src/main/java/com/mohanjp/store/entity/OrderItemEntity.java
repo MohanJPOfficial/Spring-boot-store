@@ -1,5 +1,6 @@
 package com.mohanjp.store.entity;
 
+import com.mohanjp.store.product.entity.ProductEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

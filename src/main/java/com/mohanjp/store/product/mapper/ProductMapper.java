@@ -1,7 +1,7 @@
-package com.mohanjp.store.mapper;
+package com.mohanjp.store.product.mapper;
 
-import com.mohanjp.store.dto.ProductDto;
-import com.mohanjp.store.entity.ProductEntity;
+import com.mohanjp.store.product.dto.ProductDto;
+import com.mohanjp.store.product.entity.ProductEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;

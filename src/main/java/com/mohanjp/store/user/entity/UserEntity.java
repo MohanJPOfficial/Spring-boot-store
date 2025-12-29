@@ -1,6 +1,6 @@
 package com.mohanjp.store.user.entity;
 
-import com.mohanjp.store.entity.ProductEntity;
+import com.mohanjp.store.product.entity.ProductEntity;
 import jakarta.persistence.*;
 import lombok.*;
 

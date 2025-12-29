@@ -4,10 +4,10 @@ import com.mohanjp.store.dto.CartDto;
 import com.mohanjp.store.dto.CartItemDto;
 import com.mohanjp.store.entity.CartEntity;
 import com.mohanjp.store.exception.CartNotFoundException;
-import com.mohanjp.store.exception.ProductNotFoundException;
+import com.mohanjp.store.product.exception.ProductNotFoundException;
 import com.mohanjp.store.mapper.CartMapper;
 import com.mohanjp.store.repository.CartRepository;
-import com.mohanjp.store.repository.ProductRepository;
+import com.mohanjp.store.product.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

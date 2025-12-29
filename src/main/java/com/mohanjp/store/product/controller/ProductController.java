@@ -1,10 +1,10 @@
-package com.mohanjp.store.controllers;
+package com.mohanjp.store.product.controller;
 
-import com.mohanjp.store.dto.ProductDto;
-import com.mohanjp.store.entity.ProductEntity;
-import com.mohanjp.store.mapper.ProductMapper;
-import com.mohanjp.store.repository.CategoryRepository;
-import com.mohanjp.store.repository.ProductRepository;
+import com.mohanjp.store.product.dto.ProductDto;
+import com.mohanjp.store.product.entity.ProductEntity;
+import com.mohanjp.store.product.mapper.ProductMapper;
+import com.mohanjp.store.product.repository.CategoryRepository;
+import com.mohanjp.store.product.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

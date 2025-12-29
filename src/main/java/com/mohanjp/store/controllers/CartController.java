@@ -5,7 +5,7 @@ import com.mohanjp.store.dto.CartDto;
 import com.mohanjp.store.dto.CartItemDto;
 import com.mohanjp.store.dto.UpdateCartItemRequest;
 import com.mohanjp.store.exception.CartNotFoundException;
-import com.mohanjp.store.exception.ProductNotFoundException;
+import com.mohanjp.store.product.exception.ProductNotFoundException;
 import com.mohanjp.store.service.CartService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

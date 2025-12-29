@@ -1,4 +1,4 @@
-package com.mohanjp.store.exception;
+package com.mohanjp.store.product.exception;
 
 public class ProductNotFoundException extends RuntimeException {
 
