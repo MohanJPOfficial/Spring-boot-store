@@ -8,7 +8,7 @@ import com.mohanjp.store.exception.CartNotFoundException;
 import com.mohanjp.store.payment.exception.PaymentException;
 import com.mohanjp.store.repository.CartRepository;
 import com.mohanjp.store.repository.OrderRepository;
-import com.mohanjp.store.service.AuthService;
+import com.mohanjp.store.auth.service.AuthService;
 import com.mohanjp.store.service.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

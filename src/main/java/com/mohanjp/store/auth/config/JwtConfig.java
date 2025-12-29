@@ -1,4 +1,4 @@
-package com.mohanjp.store.config;
+package com.mohanjp.store.auth.config;
 
 import io.jsonwebtoken.security.Keys;
 import lombok.Data;

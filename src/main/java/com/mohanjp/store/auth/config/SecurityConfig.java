@@ -1,7 +1,7 @@
-package com.mohanjp.store.config;
+package com.mohanjp.store.auth.config;
 
 import com.mohanjp.store.user.entity.Role;
-import com.mohanjp.store.filter.JwtAuthenticationFilter;
+import com.mohanjp.store.auth.filter.JwtAuthenticationFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

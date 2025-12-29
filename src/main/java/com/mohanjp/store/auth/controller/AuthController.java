@@ -1,12 +1,12 @@
-package com.mohanjp.store.controllers;
+package com.mohanjp.store.auth.controller;
 
-import com.mohanjp.store.config.JwtConfig;
-import com.mohanjp.store.dto.JwtResponse;
-import com.mohanjp.store.dto.LoginRequest;
+import com.mohanjp.store.auth.config.JwtConfig;
+import com.mohanjp.store.auth.dto.JwtResponse;
+import com.mohanjp.store.auth.dto.LoginRequest;
 import com.mohanjp.store.user.dto.UserDto;
 import com.mohanjp.store.user.mapper.UserMapper;
 import com.mohanjp.store.user.repository.UserRepository;
-import com.mohanjp.store.service.JwtService;
+import com.mohanjp.store.auth.service.JwtService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;

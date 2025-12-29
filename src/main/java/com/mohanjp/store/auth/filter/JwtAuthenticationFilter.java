@@ -1,6 +1,6 @@
-package com.mohanjp.store.filter;
+package com.mohanjp.store.auth.filter;
 
-import com.mohanjp.store.service.JwtService;
+import com.mohanjp.store.auth.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

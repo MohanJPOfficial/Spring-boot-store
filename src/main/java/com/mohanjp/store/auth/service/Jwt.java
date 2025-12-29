@@ -1,4 +1,4 @@
-package com.mohanjp.store.service;
+package com.mohanjp.store.auth.service;
 
 import com.mohanjp.store.user.entity.Role;
 import io.jsonwebtoken.Claims;

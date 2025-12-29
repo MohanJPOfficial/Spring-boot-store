@@ -1,5 +1,6 @@
 package com.mohanjp.store.service;
 
+import com.mohanjp.store.auth.service.AuthService;
 import com.mohanjp.store.dto.order.OrderDto;
 import com.mohanjp.store.exception.OrderNotFoundException;
 import com.mohanjp.store.mapper.OrderMapper;
