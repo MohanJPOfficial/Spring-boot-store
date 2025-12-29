@@ -1,12 +1,12 @@
-package com.mohanjp.store.controllers;
+package com.mohanjp.store.cart.controller;
 
-import com.mohanjp.store.dto.AddItemToCartRequest;
-import com.mohanjp.store.dto.CartDto;
-import com.mohanjp.store.dto.CartItemDto;
-import com.mohanjp.store.dto.UpdateCartItemRequest;
-import com.mohanjp.store.exception.CartNotFoundException;
+import com.mohanjp.store.cart.dto.AddItemToCartRequest;
+import com.mohanjp.store.cart.dto.CartDto;
+import com.mohanjp.store.cart.dto.CartItemDto;
+import com.mohanjp.store.cart.dto.UpdateCartItemRequest;
+import com.mohanjp.store.cart.exception.CartNotFoundException;
 import com.mohanjp.store.product.exception.ProductNotFoundException;
-import com.mohanjp.store.service.CartService;
+import com.mohanjp.store.cart.service.CartService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

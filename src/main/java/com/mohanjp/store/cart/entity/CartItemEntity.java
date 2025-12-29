@@ -1,4 +1,4 @@
-package com.mohanjp.store.entity;
+package com.mohanjp.store.cart.entity;
 
 import com.mohanjp.store.product.entity.ProductEntity;
 import jakarta.persistence.*;

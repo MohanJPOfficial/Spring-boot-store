@@ -1,9 +1,9 @@
-package com.mohanjp.store.mapper;
+package com.mohanjp.store.cart.mapper;
 
-import com.mohanjp.store.dto.CartDto;
-import com.mohanjp.store.dto.CartItemDto;
-import com.mohanjp.store.entity.CartEntity;
-import com.mohanjp.store.entity.CartItemEntity;
+import com.mohanjp.store.cart.dto.CartDto;
+import com.mohanjp.store.cart.dto.CartItemDto;
+import com.mohanjp.store.cart.entity.CartEntity;
+import com.mohanjp.store.cart.entity.CartItemEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

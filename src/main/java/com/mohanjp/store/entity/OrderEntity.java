@@ -1,5 +1,6 @@
 package com.mohanjp.store.entity;
 
+import com.mohanjp.store.cart.entity.CartEntity;
 import com.mohanjp.store.user.entity.UserEntity;
 import jakarta.persistence.*;
 import lombok.Getter;

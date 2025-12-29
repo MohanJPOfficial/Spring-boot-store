@@ -1,4 +1,4 @@
-package com.mohanjp.store.dto;
+package com.mohanjp.store.cart.dto;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

@@ -1,12 +1,12 @@
-package com.mohanjp.store.service;
+package com.mohanjp.store.cart.service;
 
-import com.mohanjp.store.dto.CartDto;
-import com.mohanjp.store.dto.CartItemDto;
-import com.mohanjp.store.entity.CartEntity;
-import com.mohanjp.store.exception.CartNotFoundException;
+import com.mohanjp.store.cart.dto.CartDto;
+import com.mohanjp.store.cart.dto.CartItemDto;
+import com.mohanjp.store.cart.entity.CartEntity;
+import com.mohanjp.store.cart.exception.CartNotFoundException;
 import com.mohanjp.store.product.exception.ProductNotFoundException;
-import com.mohanjp.store.mapper.CartMapper;
-import com.mohanjp.store.repository.CartRepository;
+import com.mohanjp.store.cart.mapper.CartMapper;
+import com.mohanjp.store.cart.repository.CartRepository;
 import com.mohanjp.store.product.repository.ProductRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
