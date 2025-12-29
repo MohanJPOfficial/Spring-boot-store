@@ -1,6 +1,6 @@
-package com.mohanjp.store.dto;
+package com.mohanjp.store.user.dto;
 
-import com.mohanjp.store.validation.Lowercase;
+import com.mohanjp.store.user.validation.Lowercase;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

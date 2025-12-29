@@ -1,9 +1,9 @@
-package com.mohanjp.store.mapper;
+package com.mohanjp.store.user.mapper;
 
-import com.mohanjp.store.dto.RegisterUserRequest;
-import com.mohanjp.store.dto.UpdateUserRequest;
-import com.mohanjp.store.dto.UserDto;
-import com.mohanjp.store.entity.UserEntity;
+import com.mohanjp.store.user.dto.RegisterUserRequest;
+import com.mohanjp.store.user.dto.UpdateUserRequest;
+import com.mohanjp.store.user.dto.UserDto;
+import com.mohanjp.store.user.entity.UserEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 

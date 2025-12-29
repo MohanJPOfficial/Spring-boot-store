@@ -1,7 +1,7 @@
 package com.mohanjp.store.service;
 
-import com.mohanjp.store.entity.UserEntity;
-import com.mohanjp.store.repository.UserRepository;
+import com.mohanjp.store.user.entity.UserEntity;
+import com.mohanjp.store.user.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;

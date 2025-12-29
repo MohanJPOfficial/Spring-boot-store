@@ -1,6 +1,6 @@
 package com.mohanjp.store.service;
 
-import com.mohanjp.store.entity.Role;
+import com.mohanjp.store.user.entity.Role;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 

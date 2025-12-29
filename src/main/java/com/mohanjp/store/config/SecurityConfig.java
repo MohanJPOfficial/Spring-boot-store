@@ -1,6 +1,6 @@
 package com.mohanjp.store.config;
 
-import com.mohanjp.store.entity.Role;
+import com.mohanjp.store.user.entity.Role;
 import com.mohanjp.store.filter.JwtAuthenticationFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;

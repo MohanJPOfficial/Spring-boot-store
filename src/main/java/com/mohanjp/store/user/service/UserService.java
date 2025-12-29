@@ -1,6 +1,6 @@
-package com.mohanjp.store.service;
+package com.mohanjp.store.user.service;
 
-import com.mohanjp.store.repository.UserRepository;
+import com.mohanjp.store.user.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;

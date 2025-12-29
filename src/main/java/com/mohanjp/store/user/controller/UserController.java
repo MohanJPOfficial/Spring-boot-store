@@ -1,12 +1,12 @@
-package com.mohanjp.store.controllers;
+package com.mohanjp.store.user.controller;
 
-import com.mohanjp.store.dto.ChangePasswordRequest;
-import com.mohanjp.store.dto.RegisterUserRequest;
-import com.mohanjp.store.dto.UpdateUserRequest;
-import com.mohanjp.store.dto.UserDto;
-import com.mohanjp.store.entity.Role;
-import com.mohanjp.store.mapper.UserMapper;
-import com.mohanjp.store.repository.UserRepository;
+import com.mohanjp.store.user.dto.ChangePasswordRequest;
+import com.mohanjp.store.user.dto.RegisterUserRequest;
+import com.mohanjp.store.user.dto.UpdateUserRequest;
+import com.mohanjp.store.user.dto.UserDto;
+import com.mohanjp.store.user.entity.Role;
+import com.mohanjp.store.user.mapper.UserMapper;
+import com.mohanjp.store.user.repository.UserRepository;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;

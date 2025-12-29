@@ -1,6 +1,6 @@
-package com.mohanjp.store.repository;
+package com.mohanjp.store.user.repository;
 
-import com.mohanjp.store.entity.AddressEntity;
+import com.mohanjp.store.user.entity.AddressEntity;
 import org.springframework.data.repository.CrudRepository;
 
 public interface AddressRepository extends CrudRepository<AddressEntity, Long> {

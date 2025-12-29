@@ -1,8 +1,7 @@
-package com.mohanjp.store.repository;
+package com.mohanjp.store.user.repository;
 
-import com.mohanjp.store.entity.UserEntity;
+import com.mohanjp.store.user.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 

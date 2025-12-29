@@ -1,7 +1,7 @@
 package com.mohanjp.store.service;
 
 import com.mohanjp.store.config.JwtConfig;
-import com.mohanjp.store.entity.UserEntity;
+import com.mohanjp.store.user.entity.UserEntity;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
