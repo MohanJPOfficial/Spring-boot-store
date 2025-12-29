@@ -1,8 +1,6 @@
-package com.mohanjp.store.controllers;
+package com.mohanjp.store.common.exception;
 
-import com.mohanjp.store.dto.ErrorDto;
-import jakarta.servlet.http.HttpServletResponse;
-import org.apache.coyote.Response;
+import com.mohanjp.store.common.dto.ErrorDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;

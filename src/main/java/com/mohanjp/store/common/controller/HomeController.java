@@ -1,4 +1,4 @@
-package com.mohanjp.store.controllers;
+package com.mohanjp.store.common.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

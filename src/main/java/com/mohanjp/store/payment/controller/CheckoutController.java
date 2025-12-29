@@ -2,7 +2,7 @@ package com.mohanjp.store.payment.controller;
 
 import com.mohanjp.store.payment.dto.CheckoutRequest;
 import com.mohanjp.store.payment.dto.CheckoutResponse;
-import com.mohanjp.store.dto.ErrorDto;
+import com.mohanjp.store.common.dto.ErrorDto;
 import com.mohanjp.store.cart.exception.CartEmptyException;
 import com.mohanjp.store.cart.exception.CartNotFoundException;
 import com.mohanjp.store.payment.exception.PaymentException;

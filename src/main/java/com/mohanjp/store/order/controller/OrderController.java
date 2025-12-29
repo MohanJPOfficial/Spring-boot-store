@@ -1,6 +1,6 @@
 package com.mohanjp.store.order.controller;
 
-import com.mohanjp.store.dto.ErrorDto;
+import com.mohanjp.store.common.dto.ErrorDto;
 import com.mohanjp.store.order.dto.OrderDto;
 import com.mohanjp.store.order.exception.OrderNotFoundException;
 import com.mohanjp.store.order.service.OrderService;

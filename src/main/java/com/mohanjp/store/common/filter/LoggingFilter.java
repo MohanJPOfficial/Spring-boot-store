@@ -1,4 +1,4 @@
-package com.mohanjp.store.filter;
+package com.mohanjp.store.common.filter;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

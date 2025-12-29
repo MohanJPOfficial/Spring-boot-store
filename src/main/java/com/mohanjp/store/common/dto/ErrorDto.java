@@ -1,4 +1,4 @@
-package com.mohanjp.store.dto;
+package com.mohanjp.store.common.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
