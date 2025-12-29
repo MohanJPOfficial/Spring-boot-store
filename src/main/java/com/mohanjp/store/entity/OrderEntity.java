@@ -25,7 +25,7 @@ public class OrderEntity {
 
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
-    private OrderStatus status;
+    private PaymentStatus status;
 
     @Column(name = "created_at", insertable = false, updatable = false)
     private LocalDateTime createdAt;
@@ -39,7 +39,7 @@ public class OrderEntity {
     public static OrderEntity fromCart(CartEntity cart, UserEntity customer) {
         var order = new OrderEntity();
         order.setCustomer(customer);
-        order.setStatus(OrderStatus.PENDING);
+        order.setStatus(PaymentStatus.PENDING);
         order.setTotalPrice(cart.getTotalPrice());
 
         cart.getItems().forEach(item -> {

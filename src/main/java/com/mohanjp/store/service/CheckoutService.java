@@ -9,6 +9,7 @@ import com.mohanjp.store.exception.PaymentException;
 import com.mohanjp.store.repository.CartRepository;
 import com.mohanjp.store.repository.OrderRepository;
 import com.mohanjp.store.service.paymentGateway.PaymentGateway;
+import com.mohanjp.store.service.paymentGateway.WebhookRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,5 +51,15 @@ public class CheckoutService {
             orderRepository.delete(order);
             throw ex;
         }
+    }
+
+    public void handleWebhookEvent(WebhookRequest webhookRequest) {
+        paymentGateway
+                .parseWebhookRequest(webhookRequest)
+                .ifPresent(paymentResult -> {
+                    var order = orderRepository.findById(paymentResult.getOrderId()).orElseThrow();
+                    order.setStatus(paymentResult.getPaymentStatus());
+                    orderRepository.save(order);
+                });
     }
 }

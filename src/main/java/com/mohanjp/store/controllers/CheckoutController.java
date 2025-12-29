@@ -3,21 +3,19 @@ package com.mohanjp.store.controllers;
 import com.mohanjp.store.dto.CheckoutRequest;
 import com.mohanjp.store.dto.CheckoutResponse;
 import com.mohanjp.store.dto.ErrorDto;
-import com.mohanjp.store.entity.OrderStatus;
 import com.mohanjp.store.exception.CartEmptyException;
 import com.mohanjp.store.exception.CartNotFoundException;
 import com.mohanjp.store.exception.PaymentException;
 import com.mohanjp.store.repository.OrderRepository;
 import com.mohanjp.store.service.CheckoutService;
-import com.stripe.exception.SignatureVerificationException;
-import com.stripe.model.PaymentIntent;
-import com.stripe.net.Webhook;
+import com.mohanjp.store.service.paymentGateway.WebhookRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RequiredArgsConstructor
 @RestController
@@ -27,9 +25,6 @@ public class CheckoutController {
     private final CheckoutService checkoutService;
     private final OrderRepository orderRepository;
 
-    @Value("${stripe.webhookSecretKey}")
-    private String webhookSecretKey;
-
     @PostMapping
     public CheckoutResponse checkout(
             @Valid @RequestBody CheckoutRequest request
@@ -38,42 +33,16 @@ public class CheckoutController {
     }
 
     @PostMapping("/webhook")
-    public ResponseEntity<Void> handleWebhook(
-            @RequestHeader("Stripe-signature") String signature,
+    public void handleWebhook(
+            @RequestHeader Map<String, String> headers,
             @RequestBody String payload
     ) {
-        try {
-            var event = Webhook.constructEvent(payload, signature, webhookSecretKey);
-            System.out.println("Received event: " + event.getType());
-
-            var stripeObject = event.getDataObjectDeserializer().getObject().orElse(null);
-
-            switch (event.getType()) {
-                case "payment_intent.succeeded" -> {
-                    // update order status to PAID
-                    var paymentIntent = (PaymentIntent) stripeObject;
-                    System.out.println("Received PaymentIntent: " + paymentIntent);
-                    if (paymentIntent != null) {
-                        String orderId = paymentIntent.getMetadata().get("order_id");
-                        var order = orderRepository.findById(Long.parseLong(orderId)).orElseThrow();
-                        order.setStatus(OrderStatus.PAID);
-                        orderRepository.save(order);
-                    }
-                }
-                case "payment_intent.failed" -> {
-                    // update order status to PAYMENT_FAILED
-                }
-            }
-
-            return ResponseEntity.ok().build();
-
-        } catch (SignatureVerificationException ex) {
-            return ResponseEntity.badRequest().build();
-        }
+        checkoutService.handleWebhookEvent(new WebhookRequest(headers, payload));
     }
 
     @ExceptionHandler(PaymentException.class)
     public ResponseEntity<?> handlePaymentException(PaymentException e) {
+        System.out.println("PaymentException: " + e.getMessage());
         return ResponseEntity
                 .status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(new ErrorDto("Error creating a checkout session " + e.getMessage()));
